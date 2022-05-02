@@ -23,7 +23,13 @@ class ListsController < ApplicationController
   end
 
   def edit
+    @list = List.find(params[:id])
+  end
 
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
   end
 
   #2章 private ここから下は、このcontrollerの中でしか呼び出せない
@@ -33,3 +39,4 @@ class ListsController < ApplicationController
     params.require(:list).permit(:title,:body)
   end
 end
+
