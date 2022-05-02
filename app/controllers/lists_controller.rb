@@ -36,7 +36,7 @@ class ListsController < ApplicationController
   private
   #2章 ストロングパラメータ(フォームからデータを送信する際の脆弱性を防ぐ)
   def list_params
-    params.require(:list).permit(:title,:body)
+    params.require(:list).permit(:title,:body,:image)
   end
 end
 
