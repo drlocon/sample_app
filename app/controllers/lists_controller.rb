@@ -14,22 +14,36 @@ class ListsController < ApplicationController
     redirect_to list_path(list.id)
   end
 
+  #3章 一覧画面を追加
   def index
     @lists = List.all
   end
 
+  #4章 詳細画面を追加
   def show
     @list = List.find(params[:id])
   end
 
+  #6章 編集機能を追加
   def edit
     @list = List.find(params[:id])
   end
 
+  #6章 更新機能を追加
   def update
     list = List.find(params[:id])
     list.update(list_params)
     redirect_to list_path(list.id)
+  end
+  
+  #7章 削除機能を追加
+  def destroy
+    #データ(レコード)を1件取得
+    list = List.find(params[:id])
+    #データ(レコード)を削除
+    list.destroy
+    #投稿一覧へリダイレクト
+    redirect_to '/lists'
   end
 
   #2章 private ここから下は、このcontrollerの中でしか呼び出せない
