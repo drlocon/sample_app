@@ -6,12 +6,13 @@ class ListsController < ApplicationController
 
   #2章 保存機能を追加
   def create
-    #データを受け取り、新規登録するためのインスタンス作成
-    list = List.new(list_params)
-    #データをデータベースに保存するためのsaveメソッド実行
-    list.save
-    #トップ画面へリダイレクト
-    redirect_to list_path(list.id)
+    @list = List.new(list_params) #データを受け取り、新規登録するためのインスタンス作成
+    if @list.save #データをデータベースに保存するためのsaveメソッド実行
+      redirect_to list_path(@list.id) #トップ画面へリダイレクト
+      
+    else
+      render :new
+    end
   end
 
   #3章 一覧画面を追加
